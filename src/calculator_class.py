@@ -4,10 +4,19 @@ class Calculator:
         pass
 
     def add(self, a, b):
-        self.result = a + b
-        return self.result
+        return a + b
+
+    def sub(self, a, b):
+        return a - b
+
+    def mul(self, a, b):
+        return a * b
+
+    def div(self, a, b):
+        return a / b
 
 
-calculator = Calculator()
-add_result = calculator.add(1, 2)
-print(add_result)
+if __name__ == "__main__":
+    calculator = Calculator()
+    add_result = calculator.div(1, 2)
+    print(add_result)
