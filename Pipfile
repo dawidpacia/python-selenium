@@ -7,6 +7,8 @@ verify_ssl = true
 
 [packages]
 requests = "*"
+unittest2 = "*"
+pyhamcrest = "*"
 
 [requires]
 python_version = "3.7"
