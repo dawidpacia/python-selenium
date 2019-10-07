@@ -1,10 +1,10 @@
 def fibonacci(n):
     a1, a2 = 0, 1
-    if n == 0:
+    if n == 1:
         return a1
-    elif n == 1:
+    elif n == 2:
         return a2
-    elif n < 0:
+    elif n <= 0:
         return False
     for i in range(2, n + 1):
         a1, a2 = a2, a1 + a2
