@@ -21,10 +21,7 @@ except NoSuchElementException as err:
 
 element = WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.XPATH, "//button[contains(., 'new')]")))
-
 element.click()
-
-WebDriverWait(driver, 60).until(
-            EC.invisibility_of_element_located((By.XPATH, "//button[contains(., 'new')]")))
+WebDriverWait(driver, 60).until_not(EC.presence_of_all_elements_located((By.XPATH, "//button[contains(., 'new')]")))
 
 driver.quit()
