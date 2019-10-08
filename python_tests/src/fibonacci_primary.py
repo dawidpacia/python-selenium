@@ -33,6 +33,7 @@ def if_primary(value):
         return True
     return False
 
+
 if __name__ == "__main__":
     print(fibonacci(10))
     print(if_primary(21))
