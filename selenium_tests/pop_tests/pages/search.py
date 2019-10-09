@@ -9,7 +9,7 @@ class SearchPage(BasePage):
     selectors = {
         "add_to_cart_button": (By.XPATH, "// a[ @ title = 'Add to cart']"),
         "product_container": (By.CLASS_NAME, "product-container"),
-        "continue_shopping": (By.XPATH, "//*[@title='Continue shopping']")
+        "continue_shopping_button": (By.XPATH, "//*[@title='Continue shopping']")
     }
 
     def __init__(self, driver):
@@ -20,10 +20,10 @@ class SearchPage(BasePage):
         ActionChains(self.driver).move_to_element(product_object).perform()
         add_to_cart_button.click()
         continue_button = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.selectors["continue_shopping"]))
+            EC.element_to_be_clickable(self.selectors["continue_shopping_button"]))
         continue_button.click()
         WebDriverWait(self.driver, 10).until_not(
-            EC.element_to_be_clickable(self.selectors["continue_shopping"]))
+            EC.element_to_be_clickable(self.selectors["continue_shopping_button"]))
 
     def add_all_elements_to_cart(self):
         add_to_cart_elements = self.driver.find_elements(*self.selectors["add_to_cart_button"])
