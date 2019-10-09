@@ -12,8 +12,12 @@ class BasePage:
     def __init__(self):
         pass
 
-    def wait_for_element(self, driver, selector):
-        continue_button = WebDriverWait(driver, element_waiting_timeout).until(EC.element_to_be_clickable(selector))
+    def wait_to_appear(self, driver, selector):
+        continue_button = WebDriverWait(driver, element_waiting_timeout).until(EC.presence_of_element_located(selector))
+        return continue_button
+
+    def wait_to_dissappear(self, driver, selector):
+        continue_button = WebDriverWait(driver, element_waiting_timeout).until(EC.invisibility_of_element_located(selector))
         return continue_button
 
     def hover(self, driver, element):

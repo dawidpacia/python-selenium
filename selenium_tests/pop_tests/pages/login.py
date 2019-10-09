@@ -15,3 +15,9 @@ class LoginPage(BasePage):
         self.driver.find_element(*self.selectors["email_field"]).send_keys(email)
         self.driver.find_element(*self.selectors["password_field"]).send_keys(password)
         self.driver.find_element(*self.selectors["submit_signin_button"]).click()
+
+    def check_if_logged_in(self):
+        self.wait_to_dissappear(self.driver, self.selectors["signin_button"])
+
+    def check_error_alert(self):
+        self.wait_to_appear(self.driver, self.selectors["error_alert"])

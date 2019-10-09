@@ -22,6 +22,11 @@ class CartTests(unittest.TestCase):
 
         self.main_page, self.search_page, self.basket_page, self.login_page, self.address_page  \
             = MainPage(self.driver), SearchPage(self.driver), BasketPage(self.driver), LoginPage(self.driver), AddressPage(self.driver)
+        self.search_page = SearchPage(self.driver)
+        self.basket_page = BasketPage(self.driver)
+        self.login_page = LoginPage(self.driver)
+        self.address_page = AddressPage(self.driver)
+
 
 
     def test_adding_to_cart(self):
