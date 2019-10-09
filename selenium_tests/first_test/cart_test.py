@@ -18,8 +18,6 @@ class MyTestCase(unittest.TestCase):
     def test_something(self):
         self.driver.find_element_by_id("search_query_top").send_keys("Printed Summer")
         self.driver.find_element_by_name("submit_search").click()
-        continue_button = WebDriverWait(self.driver, 10).until_not(
-            EC.element_to_be_clickable((By.XPATH, "//*[@title='Continue shopping']")))
         add_to_cart_elements = self.driver.find_elements_by_xpath("// a[ @ title = 'Add to cart']")
         items = self.driver.find_elements_by_class_name("product-container")
         for i in range(len(add_to_cart_elements)):
