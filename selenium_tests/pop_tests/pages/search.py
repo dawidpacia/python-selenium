@@ -1,13 +1,32 @@
 from selenium_tests.pop_tests.pages.base import BasePage
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-class MainPage(BasePage):
 
+class SearchPage(BasePage):
     selectors = {
-        "search_field": (By.ID, "search_query_top"),
-        "submit_button": (By.NAME, "submit_search")
+        "add_to_cart_button": (By.XPATH, "// a[ @ title = 'Add to cart']"),
+        "product_container": (By.CLASS_NAME, "product-container"),
+        "continue_shopping": (By.XPATH, "//*[@title='Continue shopping']")
     }
 
-    def make_search(self, search_text):
-        self.driver.find_element(*self.selectors["search_field"]).send_keys(search_text)
-        self.driver.find_element(*self.selectors["submit_button"]).click()
+    def __init__(self, driver):
+        super().__init__()  # access to BasePage + init
+        self.driver = driver
+
+    def add_to_cart(self, product_object, add_to_cart_button):
+        ActionChains(self.driver).move_to_element(product_object).perform()
+        add_to_cart_button.click()
+        continue_button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.selectors["continue_shopping"]))
+        continue_button.click()
+        WebDriverWait(self.driver, 10).until_not(
+            EC.element_to_be_clickable(self.selectors["continue_shopping"]))
+
+    def add_all_elements_to_cart(self):
+        add_to_cart_elements = self.driver.find_elements(*self.selectors["add_to_cart_button"])
+        items = self.driver.find_elements(*self.selectors["product_container"])
+        for i in range(len(add_to_cart_elements)):
+            self.add_to_cart(items[i], add_to_cart_elements[i])
