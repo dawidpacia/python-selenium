@@ -11,6 +11,7 @@ unittest2 = "*"
 pyhamcrest = "*"
 pylint = "*"
 selenium = "*"
+html-testrunner = "*"
 
 [requires]
 python_version = "3.7"
