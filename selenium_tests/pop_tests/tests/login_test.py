@@ -7,6 +7,7 @@ from selenium_tests.pop_tests.common.config import url, chrome_options
 
 class MyTestCase(unittest.TestCase):
 
+    @classmethod
     def setUp(self) -> None:
         options = webdriver.ChromeOptions()
         for argument in chrome_options:
@@ -27,6 +28,7 @@ class MyTestCase(unittest.TestCase):
         self.login_page.login("aaatest@gmail.com", "test12")
         self.login_page.check_error_alert()
 
+    @classmethod
     def tearDown(self) -> None:
         self.driver.save_screenshot("test.png")
         self.driver.quit()
